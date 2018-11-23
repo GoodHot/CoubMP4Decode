@@ -6,14 +6,23 @@ import java.io.RandomAccessFile;
 
 public class CoubDecodeHandlerImplement implements DecodeHandler {
     public void decode(File file) {
+        RandomAccessFile randomAccessFile = null;
         try {
-            RandomAccessFile randomAccessFile = new RandomAccessFile(file, "rw");
+            randomAccessFile = new RandomAccessFile(file, "rw");
             randomAccessFile.seek(0);
             randomAccessFile.write(new byte[]{0x00, 0x00}, 0, 2);
             file.renameTo(new File(file.getParent() + "/NICE_" + file.getName()));
             randomAccessFile.close();
         } catch (IOException e) {
             // TODO: 2018/11/23 log
+        } finally {
+            if (randomAccessFile != null) {
+                try {
+                    randomAccessFile.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
         }
     }
 
