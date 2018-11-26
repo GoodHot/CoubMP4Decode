@@ -19,3 +19,5 @@ logs/
 
 #svn
 .svn
+
+*.mp4
