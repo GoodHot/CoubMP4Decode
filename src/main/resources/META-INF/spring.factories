@@ -1,0 +1,1 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.goodHot.fun.coubMP4Decode.AutoConfigure

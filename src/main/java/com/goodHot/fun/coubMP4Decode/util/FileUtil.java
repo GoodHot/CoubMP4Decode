@@ -18,7 +18,7 @@ public class FileUtil {
      * @param regex 筛选文件名
      * @return
      */
-    public static File[] local(File dir, final String regex) {
+    public File[] local(File dir, final String regex) {
         return dir.listFiles(new FilenameFilter() {
             private Pattern pattern = Pattern.compile(regex);
 
@@ -32,7 +32,7 @@ public class FileUtil {
         });
     }
 
-    public static File[] local(String path, final String regex) {
+    public File[] local(String path, final String regex) {
         return local(new File(path), regex);
     }
 
@@ -43,7 +43,7 @@ public class FileUtil {
      * @param regex         匹配文件名
      * @param decodeHandler 解码操作
      */
-    public static void recurseDirsAndHandleFile(File dir, final String regex, DecodeHandler decodeHandler) {
+    public void recurseDirsAndHandleFile(File dir, final String regex, DecodeHandler decodeHandler) {
         for (File file : local(dir, regex)) {
             if (file.isFile()) {
                 decodeHandler.decode(file);
@@ -53,11 +53,11 @@ public class FileUtil {
         }
     }
 
-    public static void recurseDirsAndHandleFile(String path, final String regex, DecodeHandler decodeHandler) {
+    public void recurseDirsAndHandleFile(String path, final String regex, DecodeHandler decodeHandler) {
         recurseDirsAndHandleFile(new File(path), regex, decodeHandler);
     }
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
         File file = new File("/Users/yanwenyuan/aCode4F/coubMP4Decode/src/main/resources");
 //        System.out.println(JSON.toJSONString(file.list()));
 //        System.out.println(JSON.toJSONString(file.listFiles()));
